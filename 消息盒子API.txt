@@ -1,0 +1,35 @@
+查看未读消息:
+INTERFACE: /api/messages/check_num/
+METHOD:GET
+response:
+{
+    "result": {
+        "new_msg": 0
+    },
+    "msg": "succeed",
+    "status": 0
+}
+
+查看消息盒子列表:
+INTERFACE: /api/messages/
+METHOD: GET
+
+response:
+{
+    "msg": "succeed",
+    "result": [
+        {
+            "id": 1,
+            "nickname": "Rotl",
+            "userImg": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIjTlXUOibjFdNWIZlgoSFFd24Q3uJaYeFDo68BlfzQnvQamyiaet33x1FyQ3XQNUzo5dHfRzFRsmaw/132",
+            "msg_type": "like",
+            "createTime": "2018-08-21 10:18:00",
+            "read": true,
+            "user": 21,
+            "form_user": 2,
+            "clock": 56,
+            "goal": 131
+        }
+    ],
+    "status": 0
+}

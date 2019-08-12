@@ -1,0 +1,425 @@
+测试服务器地址:192.168.0.98:8080
+后台:192.168.0.98:8080/admin   user:admin  password:1qaz0plm
+正式服务器：https://www.ejiandao.cn/
+后台：https://www.ejiandao.cn/admin user:admin  password:1qaz0plm
+**1、登录接口**
+    INTERFACE:/edj/v1/login
+    METHOD:POST
+    REQUEST PARAM:
+    {
+    "code":"abedefjf"
+    "userImg":avatar_url,
+    "userName":nickname
+    }
+    RESPONSE:
+    {
+    "token":"abedefg",
+    "openid":"12234536"
+    }
+    
+**2、轮播图**
+    INTERFACE:/edj/v1/pictureCarousel
+    AUTHORIZATION:Token <string>
+    METHOD:GET
+    RESPONSE:
+    {
+    "msg": "succeed",
+    "status": 0,
+    "result": [
+        {
+            "id": 1,
+            "iconUrl": "http://192.168.0.98:8080/edj/v1/pictureCarousel/carousel/64380cd7912397ddade4febc5582b2b7d1a287ec.jpg",
+            "title": "t1",
+            "contentUrl": null,
+            "show": true,
+            "sort": 1,
+            "remark": "t1",
+            "created_time": "2018-06-22 07:00:50"
+        },
+        {
+            "id": 2,
+            "iconUrl": "http://192.168.0.98:8080/edj/v1/pictureCarousel/carousel/6159252dd42a2834171827b357b5c9ea14cebfcf.jpg",
+            "title": "t2",
+            "contentUrl": null,
+            "show": true,
+            "sort": 1,
+            "remark": "t2",
+            "created_time": "2018-06-22 07:01:29"
+        },
+        {
+            "id": 3,
+            "iconUrl": "http://192.168.0.98:8080/edj/v1/pictureCarousel/carousel/b90e7bec54e736d179f0a6b297504fc2d46269ac.jpg",
+            "title": "t3",
+            "contentUrl": null,
+            "show": true,
+            "sort": 1,
+            "remark": "t3",
+            "created_time": "2018-06-22 07:01:47"
+        }
+    ]
+ }
+**2、物品接口**
+    INTERFACE:/edj/v1/items
+    AUTHORIZATION:Token <string>
+    METHOD:GET/POST/PUT/DELETE
+    
+    _新增捡到或丢失物品记录_
+   **POST /edj/v1/items**
+   request body:
+   {
+	"itemName":"test",
+	"type":2
+    "itemType":3}
+   response body:
+   {
+    "msg": "succeed",
+    "status": 0,
+    "result": {
+        "id": 1,
+        "itemName": "test",
+        "type": 2,
+        "address": null,
+        "district": null,
+        "addressName": null,
+        "adcode": null,
+        "addressX": null,
+        "addressY": null,
+        "description": null,
+        "reward": 0,
+        "pic": null,
+        "publishDate": "2018-06-24 06:41:14",
+        "completeDate": null,
+        "annuDate": null,
+        "qrpic": null,
+        "hdnumber": null,
+        "hdnumberDate": null,
+        "status": 0,
+        "statusDate": null,
+        "idno": null,
+        "flag": 1,
+        "user": 1,
+        "itemType": 3
+     }
+   }    
+   _通过ID获取捡到或者丢失的物品_
+   **GET /edj/v1/items/1** 
+   response:
+   {
+    "msg": "succeed",
+    "status": 0,
+    "result": {
+        "id": 1,
+        "itemName": "test",
+        "type": 2,
+        "address": null,
+        "district": null,
+        "addressName": null,
+        "adcode": null,
+        "addressX": null,
+        "addressY": null,
+        "description": null,
+        "reward": 0,
+        "pic": null,
+        "publishDate": "2018-06-24 06:41:14",
+        "completeDate": null,
+        "annuDate": null,
+        "qrpic": null,
+        "hdnumber": null,
+        "hdnumberDate": null,
+        "status": 0,
+        "statusDate": null,
+        "idno": null,
+        "flag": 1,
+        "user": 1,
+        "itemType": null
+    }
+    }
+    
+    _更新某个捡到或者丢失的物品_
+   **PUT /edj/v1/items/1**
+   request body:
+   {
+	"itemName":"钱包"
+    }
+    
+   response:
+   {
+    "msg": "succeed",
+    "status": 0,
+    "result": {
+        "id": 1,
+        "itemName": "钱包",
+        "type": 2,
+        "address": null,
+        "district": null,
+        "addressName": null,
+        "adcode": null,
+        "addressX": null,
+        "addressY": null,
+        "description": null,
+        "reward": 0,
+        "pic": null,
+        "publishDate": "2018-06-24 06:41:14",
+        "completeDate": null,
+        "annuDate": null,
+        "qrpic": null,
+        "hdnumber": null,
+        "hdnumberDate": null,
+        "status": 0,
+        "statusDate": null,
+        "idno": null,
+        "flag": 1,
+        "user": 1,
+        "itemType": null
+    }
+ }
+ 
+  _统计接口_
+  **GET /edj/v1/items/statistics**
+  
+  _搜索接口_
+  **GET /edj/v1/items?itemName=钱包&type=1**
+  
+  _删除接口_
+  **DELETE /edj/v1/items/1**
+  
+  
+ 
+ 
+**3、统一下单接口**
+    Endpoint:/edj/v1/unifiedorder
+    Method:POST
+    Header:Authorization: Token <string>
+    request param:
+    {
+        "body":订单描述,
+        "total_fee":**订单金额,单位为分，注意单位转换**
+        "item_id":item_id  物品ID
+    }
+    response:
+    {
+    "appId":appid,
+    "timeStamp":timestamp,
+    "nonceStr":nonce_str,
+    "package":package,
+    "signType":sign_type,
+    "outTradeNo":trade_no
+    }
+**4、提现接口**
+    Endpoint:/edj/v1/withdraw_cash
+    Method:POST
+    Header:Authorization: Token <string>
+    request param:
+    {
+        "desc":desc,
+        "amount":amount
+    }
+    
+**6、获取用户信息**
+    Endpoint:/edj/v1/getUserInfo
+    Method:GET
+    Header:Authorization: Token <string>
+    注:不需要传openid
+
+**7、更新用户接口**
+    Endpoint:/edj/v1/updateUserInfo
+    Method:POST
+    Header:Authorization: Token <string>
+    注:不需要传openid
+    request param:
+    {
+        "nickname":nickname,
+        "avatar_url":avatar_url
+    }
+    
+**8、根据经纬度获取详细地址**
+    Endpoint:/edj/v1/regeoToCity/
+    Method:POST
+    Header:Authorization: Token <string>
+    request param:
+    {
+        "addressX":addressX,
+        "addressY":addressY
+    }   
+    
+**9、图片上传接口**
+    Endpoint:/edj/v1/pictures
+    Method:POST
+    Header:Authorization: Token <string>
+    request param:
+    {
+        "image":"E:/image/test.jpg",
+     }
+     
+     
+**10、获取失物类型接口**
+    Endpoint:/edj/v1/getItemType
+    Method:GET
+    Header:Authorization: Token <string>
+    
+    
+**11、更新支付状态接口**
+    Endpoint:/edj/v1/updatePaymentStatus
+    Method:POST
+    Header:Authorization: Token <string>
+    request param:
+    
+    {
+        "payStatus":payStatus,
+        "outTradeNo":outTradeNo,
+    }
+
+
+   paystatus值:
+    3、支付完成
+    4、支付失败
+    6、取消支付
+    
+**12、钱包接口**
+    Endpoint:/edj/v1/wallet
+    Method:GET
+    Header:Authorization: Token <string>
+    
+**13、获取二维码接口**
+    Endpoint:/edj/v1/getQrcode
+    Method:POST
+    Header:Authorization: Token <string>
+    request param
+    
+       {
+	 "scene":"?id=10",
+	 "page":"/page/index"
+      }
+   response:
+   
+    {
+    "msg": "succeed",
+    "status": 0,
+    "result": "qrcode/qrcode_orfbx0GCwJ-lk9fKoKKw71Kzdeos_1530779178.jpeg"
+   }
+   
+**14、获取Form ID**
+    Endpoint:/edj/v1/getFormID
+    Method:POST
+    Header:Authorization: Token <string>
+  
+    request param:
+    {
+        "form_id":
+        "prepay_id":
+    }
+
+**15、聊天接口**
+    Endpoint:wss://www.ejiandao.cn/ws/chat/34e3e14bd60346351e4ed9bdf9dccf4821db7c7a/
+    
+   >34e3e14bd60346351e4ed9bdf9dccf4821db7c7a为用户token
+   
+   消息格式：
+    
+    {"sender": "orfbx0I8x5w9o5nkPKZVPxuUY85E",  发送方openid
+    "receiver": "orfbx0GCwJ-lk9fKoKKw71Kzdeos",  接收方openid
+    "messageType": 7,  消息类型
+    "item_id": 94,     物品ID
+    "content": 
+        {"type": 1, 
+        "isType": 1, 
+        "sender": "orfbx0I8x5w9o5nkPKZVPxuUY85E",
+         "text": "test"
+         }, 
+    "sendFromMe": true, "
+     meanwhile": false}
+     
+  >消息类型
+  
+   1,"文本"
+   2,"图片"
+   4,'地图'
+   5,'详情'
+        
+**16、消息接口**
+    Endpoint:/edj/v1/messages
+    Method:POST
+    Header:Authorization: Token <string>
+    
+   >修改消息为可读
+   
+   PUT /edj/v1/messages/id
+   
+    {
+        is_read:True
+     }
+   
+   >获取某个聊天组的聊天记录
+   
+   GET /edj/v1/messages?group_id=id
+   
+   实例：https://www.ejiandao.cn/edj/v1/messages?group_id=1
+
+**17、获取聊天组 
+   >获取消息用户列表
+  
+   GET /edj/v1/chatGroup
+   
+   >获取消息列表
+   
+    {
+    "msg": "succeed",
+    "status": 0,
+    "result": [
+        {
+            "name": "10_11",
+            "creator": {
+                "id": 11,
+                "last_login": null,
+                "is_superuser": false,
+                "username": "orfbx0I8x5w9o5nkPKZVPxuUY85E",
+                "first_name": "",
+                "last_name": "",
+                "email": "",
+                "is_staff": false,
+                "is_active": true,
+                "date_joined": "2018-07-09",
+                "nickname": "测试😂",
+                "avatar_url": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLiaKmzEpgj3Bjibrawsc1dcocicrOSXT0B70YWiaXDqJt76aDyKXUycXSaf7BQQtia8SjkIDBZ7tztibwQ/132",
+                "phone_num": "13417968941",
+                "city": null,
+                "province": null,
+                "country": "china",
+                "qq": null,
+                "wechat": null,
+                "signature": "",
+                "address": "国才",
+                "sex": null,
+                "language": "zh-hans"
+            },
+            "participant": {
+                "id": 10,
+                "last_login": null,
+                "is_superuser": false,
+                "username": "orfbx0GCwJ-lk9fKoKKw71Kzdeos",
+                "first_name": "",
+                "last_name": "",
+                "email": "",
+                "is_staff": false,
+                "is_active": true,
+                "date_joined": "2018-07-07",
+                "nickname": "吖浩",
+                "avatar_url": "https://wx.qlogo.cn/mmopen/vi_32/fMHeNIeZxuicESDJ5C2preTJukNVs0Eg53ZZScoYXN6nD2E3xMu1B4Iibun7w3Z5FR4RL7cianAkShUej4ib9UpYFw/132",
+                "phone_num": "13414100610",
+                "city": null,
+                "province": null,
+                "country": "china",
+                "qq": null,
+                "wechat": null,
+                "signature": "",
+                "address": "国采中心",
+                "sex": null,
+                "language": "zh-hans"
+            },
+            "created_time": "2018-07-12",
+            "update_time": "2018-07-12"
+        }
+    ]
+    }
+
+    

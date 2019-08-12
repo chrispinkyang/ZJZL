@@ -1,0 +1,150 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>联系我们</title>
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+    <script type="text/javascript" src="{% static '/goals/js/jquery.js' %}"></script>
+    <link href="{% static '/goals/css/page.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <!--内容-->
+    <script type="text/javascript" src="{% static '/goals/js/jquery.inputtext.js' %}"></script>
+    
+    <!--头部-->
+
+<div class="top">
+    <div class="top_main clearfix">
+        <div class="top_right">
+            欢迎来到珠江智联！
+            <span>
+                <a href="{% url 'sign_in' %}"> 登录</a>
+            </span>
+            <span>
+                <a href="{% url 'register' %}"> 注册</a>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="headw">
+    <div class="head">
+        <div class="logo" style="text-align: center;line-height: 70px;color: green;">珠江智联</div>
+        <div class="topsearch">
+            <div class="topsearchbox">
+                <form>
+                    <input type="text" name="k" class="keywords" value="请输入关键词，如小米">
+                    <!-- <input type="submit" value="搜索" class="button" /> -->
+                    <span style="display: inline;padding:10px 25px;color:#fff;font-size:17px;background: #bc1950;cursor: pointer;" class="button">搜索</span>
+                    <!-- <input type="hidden" name="m" value="search"> -->
+                </form>
+            </div>
+            
+            <script>
+                $('.button').click(function () {
+                    var a = $('.keywords').val();
+                    console.log(a);
+                    if (a == '小米' || a == '小' || a == '米') {
+                        window.location.href = "{% url 'seachx' %}";
+                    } else if (a == '公牛' || a == '公' || a == '牛') {
+                        window.location.href = "{% url 'seachg' %}";
+                    } else if (a == '珠江智联' || a == '珠江' || a == '智联' || a == '珠' || a == '智') {
+                        window.location.href = "{% url 'seachz' %}";
+                    }else {
+						    window.location.href = "{%  url 'seachnull' %}";
+                        }
+                });
+            </script>
+            <p class="topkeywords">
+                <a href="{% url 'seachx' %}">小米</a>&nbsp;&nbsp;
+                <a href="{% url 'seachg' %}">公牛</a>&nbsp;&nbsp;</p>
+        </div>
+        <div class="carnum" id="carcount">
+        </div>
+    </div>
+</div>
+<div class="nav_list">
+    <ul class="clearfix">
+        <li>
+            <a href="{% url 'index' %}" title="首页">首页</a>
+        </li>
+        <li>
+            <a href="{% url 'sell' %}" title="卖车">卖家</a>
+        </li>
+        <li>
+            <a href="{% url 'seach' %}" title="买车">买家</a>
+        </li>
+        <li>
+            <a href="{% url 'about' %}" title="联系" class="here">联系</a>
+        </li>
+    </ul>
+</div>
+    <!--头部end -->
+    <div class="main mt10 clearfix">
+        <div class="aboutbox clearfix">
+            <div class="abouttitle fb">联系</div>
+            <div class="leftbox">
+                <ul class="leftlist">
+
+                    <li>
+                        <a class="bb">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="rightbox">
+
+                <div class="two" style="display: block">
+                    <h3>联系我们</h3>
+                    <p style="margin-top:10px;">公司注册名称：</p>
+                    <p style="margin-top:10px;">广东珠江智联信息科技股份有限公司</p>
+                    <p style="margin-top:10px;">公司地址：</p>
+                    <p style="margin-top:10px;">广州市海珠区琶洲大道中06-08号国际采购中心1411</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .aa,.bb{
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(".bb").click(function(){
+            $('.two').css('display','block');
+            $('.one').css('display','none');
+        });
+        $('.aa').click(function(){
+            $('.two').css('display', 'none');
+            $('.one').css('display', 'block');
+        })
+    </script>
+
+    <!--版权-->
+    <!--底部导航-->
+        <div class="footer" id="foot">
+            <p class="tc">
+                <a href="{% url 'index' %}" title="首页">首页</a> |
+                <a href="{% url 'sell' %}" title="卖车">卖家</a> |
+                <a href="{% url 'seach' %}" title="买车">买家</a> |
+                <a href="{% url 'about' %}" title="联系">联系</a> |
+            </p>
+            <p class="mt10"> Copyright 2019 广东珠江智联信息科技股份有限公司版权所有
+                <a href="http://www.miitbeian.gov.cn/" title="粤ICP备16037358号-4">粤ICP备16037358号-4</a>
+            </p>
+            <p class="mt10"> 电话：020-84138253 地址：广州市海珠区琶洲大道中06-08号907室</p>
+        </div>
+        <div id="right-side" class="right-side">
+            <ul>
+                <li class="side-top w4">
+                    <a id="backtop" title="返回顶部" href="#top" style="display: block;">返回顶部</a>
+                </li>
+            </ul>
+        </div>
+    <!-- 版权 结束 -->
+</body>
+
+</html>
